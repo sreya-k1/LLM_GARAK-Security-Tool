@@ -1,4 +1,4 @@
-# LLM GARAK Security Tool
+# LLM SecureScan - Using GARAK
 
 An open-source security assessment framework for evaluating Large Language Models (LLMs) against common vulnerabilities using GARAK and OWASP Top 10 for LLM Applications.
 
@@ -49,30 +49,54 @@ The tool leverages GARAK, an open-source LLM vulnerability scanner, to perform a
   
 ## Project Structure
 
-LLM_GARAK SECURITY TOOL/
-│
-├── .venv/                     # Python virtual environment
-│
-├── app/
-│   ├── chatbot.py             # LLM chatbot implementation
-│   ├── config.py              # Application configuration
-│   ├── main.py                # Entry point
-│   ├── models.py              # Model definitions
-│   └── security.py            # Security guardrails and checks
-│
-├── garak_reports/
-│   ├── *.report.jsonl         # GARAK scan reports
-│   └── *.hitlog.jsonl         # Vulnerability hit logs
-│
-├── reports/
-│   ├── final_report.md        # Markdown report
-│   └── final_report.pdf       # Generated PDF report
-│
-├── report_generator.py        # Creates final reports
-├── pdf_generator.py           # Converts reports to PDF
-├── requirements.txt           # Project dependencies
-├── .gitignore
-└── README.md
+                          +------------------+
+                          |      USER        |
+                          +--------+---------+
+                                   |
+                                   v
+                    +-------------------------------+
+                    |      Python LLM Chatbot       |
+                    |         (chatbot.py)          |
+                    +---------------+---------------+
+                                    |
+                                    v
+                    +-------------------------------+
+                    |         Application Core      |
+                    |            (main.py)          |
+                    +---------------+---------------+
+                                    |
+                +-------------------+-------------------+
+                |                                       |
+                v                                       v
+    +---------------------------+         +---------------------------+
+    |      Security Module      |         |       Model Manager       |
+    |      (security.py)        |         |       (models.py)         |
+    +-------------+-------------+         +---------------------------+
+                  |
+                  v
+    +---------------------------------------------------+
+    |          GARAK Vulnerability Scanner              |
+    |    Prompt Injection | Jailbreak | Data Leakage    |
+    +---------------------+-----------------------------+
+                          |
+                          v
+              +-------------------------------+
+              |        GARAK REPORTS          |
+              |  report.jsonl / hitlog.jsonl  |
+              +---------------+---------------+
+                              |
+                              v
+              +-------------------------------+
+              |     Report Generation Layer   |
+              | report_generator.py           |
+              | pdf_generator.py              |
+              +---------------+---------------+
+                              |
+                              v
+                    +----------------------+
+                    |    FINAL OUTPUT      |
+                    |   MD + PDF Reports   |
+                    +----------------------+
 
 ## Sample Findings
 
